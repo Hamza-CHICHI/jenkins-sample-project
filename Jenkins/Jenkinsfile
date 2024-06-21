@@ -1,6 +1,9 @@
 pipeline{
     agent {
-        docker { image 'maven:latest' }
+        docker { 
+            image 'maven:3.9.7-eclipse-temurin-8-alpine' 
+            args '-u root'
+        }
     }
 
     
@@ -17,7 +20,7 @@ pipeline{
         stage('Build and Test') {
             steps {
                 script {
-                    sh 'mvn clean package'
+                    sh 'mvn -B clean package'
                 }
             }
         }
