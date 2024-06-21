@@ -1,12 +1,30 @@
 pipeline{
     agent {
         docker { image 'maven:latest' }
-    }   
+    }
+
+    
     stages {
-        stage('Build') {
+
+        stage('Checkout') {
             steps {
-                // Run Maven version
-                sh 'mvn --version'
+                script {
+                    checkout scm
+                }
+            }
+        }
+
+        stage('Build and Test') {
+            steps {
+                script {
+                    sh 'mvn clean package'
+                }
+            }
+        }
+
+        stage('Clean up') {
+            steps {
+                deleteDir()
             }
         }
     }   
