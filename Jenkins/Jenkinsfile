@@ -20,18 +20,6 @@ pipeline{
         }
 
 
-        stage('Check user privileges') {
-            steps {
-                script {
-                    sh 'whoami'
-                    sh 'id -u'
-                    sh 'id -g'
-                    sh 'echo $HOME'
-                    sh 'ls -al --recursive /root/.m2'
-                }
-            }
-        }
-
         stage('Build and Test') {
             steps {
                 script {
