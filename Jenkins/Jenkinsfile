@@ -2,7 +2,7 @@ pipeline{
     agent {
         docker { 
             image 'maven:3.9.7-eclipse-temurin-17-alpine' 
-            args '-u jenkins'
+            //args '-u jenkins'
             args '-v $HOME/.m2:/var/maven/.m2:z -e MAVEN_CONFIG=/var/maven/.m2 -e MAVEN_OPTS="-Duser.home=/var/maven"'
             //args '-v /home/jenkins/.m2:/home/jenkins/.m2:z -e MAVEN_CONFIG=/var/maven/.m2 -e MAVEN_OPTS="-Duser.home=/var/maven"'
             reuseNode true
@@ -28,7 +28,7 @@ pipeline{
                     sh 'id -u'
                     sh 'id -g'
                     sh 'echo $HOME'
-                    sh 'ls -al --recurssive /var/maven/'
+                    sh 'ls -al --recursive /var/maven/'
                 }
             }
         }
