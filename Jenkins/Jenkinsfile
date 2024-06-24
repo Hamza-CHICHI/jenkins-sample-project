@@ -2,7 +2,7 @@ pipeline{
     agent {
         docker { 
             image 'maven:3.9.7-eclipse-temurin-17-alpine'
-            args '-u root -v $HOME/.m2:/root/.m2:z -e MAVEN_CONFIG=/root/.m2 -e MAVEN_OPTS="-Duser.home=/root/.m2"'
+            args '-u jenkins:jenkins -v $HOME/.m2:/root/.m2:z -e MAVEN_CONFIG=/root/.m2 -e MAVEN_OPTS="-Duser.home=/root/.m2"'
             //args '-v /home/jenkins/.m2:/home/jenkins/.m2:z -e MAVEN_CONFIG=/var/maven/.m2 -e MAVEN_OPTS="-Duser.home=/var/maven"'
             reuseNode true
         }
