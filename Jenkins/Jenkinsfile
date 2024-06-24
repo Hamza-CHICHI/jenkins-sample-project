@@ -12,6 +12,19 @@ pipeline{
     
     stages {
 
+
+        stage('Setup User') {
+            steps {
+                script {
+                    sh '''
+                        if ! id -u jenkins > /dev/null 2>&1; then
+                            adduser -D -u 1000 jenkins || exit 1
+                        fi
+                    '''
+                }
+            }
+        }
+
         stage('Checkout') {
             steps {
                 script {
