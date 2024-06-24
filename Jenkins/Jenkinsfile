@@ -20,10 +20,23 @@ pipeline{
             }
         }
 
+
+        stage('Check user privileges') {
+            steps {
+                script {
+                    sh 'whoami'
+                    sh 'id -u'
+                    sh 'id -g'
+                    sh 'echo $HOME'
+                    sh 'ls -al --recurssive /var/maven/'
+                }
+            }
+        }
+
         stage('Build and Test') {
             steps {
                 script {
-                    sh 'mvn -B clean package -DskipTestss'
+                    sh 'mvn -B clean package -DskipTests'
                 }
             }
         }
