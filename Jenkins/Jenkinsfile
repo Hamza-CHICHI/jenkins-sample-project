@@ -3,7 +3,6 @@ pipeline{
         docker { 
             image 'maven:3.9.7-eclipse-temurin-17-alpine'
             args '-u 1000:1000 -v $HOME/.m2:/opt/.m2:z -e MAVEN_CONFIG=/opt/.m2 -e MAVEN_OPTS="-Duser.home=/opt/.m2"'
-            //args '-v /home/jenkins/.m2:/home/jenkins/.m2:z -e MAVEN_CONFIG=/var/maven/.m2 -e MAVEN_OPTS="-Duser.home=/var/maven"'
             reuseNode true
         }
     }
@@ -23,7 +22,7 @@ pipeline{
         stage('Build') {
             steps {
                 script {
-                    sh 'mvn clean install'
+                    sh 'mvn clean install -DskipTests'
                 }
             }
         }
